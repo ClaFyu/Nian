@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<div>
+    <h1>单选</h1>
+    <div id="radioDiv">
+        <input type="radio" name="print" id="t" value="0" onclick="divClick()" checked="true">输入总人数
+        <input type="radio" name="print" id="s" value="1" onclick="divClick()">输入各部门人数
+    </div>
+
+    <div style="height: 50px;">
+        <div style="display: block;" id="div1">
+            <input type="text" id="singleNum" placeholder="请输入人数">
+        </div>
+        <div style="display: none;" id="div2">
+            <input type="text" id="firstNum" placeholder="请输入人数">
+            <br>
+            <input type="text" id="secondNum" placeholder="请输入人数">
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" id="submit" value="提交">
+    </div>
+</div>
+</body>
+<script>
+    function divClick() {
+        if (document.getElementById("t").checked) {
+            document.getElementById("div1").style.display = "block";
+            document.getElementById("div2").style.display = "none";
+        } else if (document.getElementById("s").checked) {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "block";
+        } else {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("div2").style.display = "none";
+        }
+    }
+</script>
+</html>
