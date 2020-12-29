@@ -31,7 +31,9 @@ public class DrawServlet extends HttpServlet  {
 
         if (num == 0) {
             JOptionPane.showMessageDialog(null, "此奖已抽完，请抽取其他奖项");
-            response.sendRedirect("drawing.jsp");
+
+            request.setAttribute("awardList", ConfigUtil.returnDrawList());
+            request.getRequestDispatcher("drawing.jsp").forward(request, response);
         }
 
         int newRestNum = restTotalNum - num;
@@ -60,18 +62,8 @@ public class DrawServlet extends HttpServlet  {
 
         if (list.size() > 0 && result) {
             JOptionPane.showMessageDialog(null, "抽奖完成");
-            List<FrontAllAwardInfoNow> list1 = new ArrayList<>();
 
-            for (String abbr: ConfigUtil.awardLuckyList.keySet()) {
-                FrontAllAwardInfoNow frontAllAwardInfoNow = new FrontAllAwardInfoNow();
-
-                frontAllAwardInfoNow.setAbbr(abbr);
-                frontAllAwardInfoNow.setName(ConfigUtil.awardLuckyList.get(abbr).getFirst());
-                frontAllAwardInfoNow.setRestNum(ConfigUtil.awardLuckyList.get(abbr).getSecond().getFirst());
-                list1.add(frontAllAwardInfoNow);
-            }
-
-            request.setAttribute("awardList", list1);
+            request.setAttribute("awardList", ConfigUtil.returnDrawList());
             request.getRequestDispatcher("drawing.jsp").forward(request, response);
         } else {
             JOptionPane.showMessageDialog(null, "抽奖失败");

@@ -19,18 +19,7 @@ public class JumpServlet extends HttpServlet {
         String page = request.getParameter("page");
 
         if (page.equals("0")) {
-            List<FrontAllAwardInfoNow> list = new ArrayList<>();
-
-            for (String abbr: ConfigUtil.awardLuckyList.keySet()) {
-                FrontAllAwardInfoNow frontAllAwardInfoNow = new FrontAllAwardInfoNow();
-
-                frontAllAwardInfoNow.setAbbr(abbr);
-                frontAllAwardInfoNow.setName(ConfigUtil.awardLuckyList.get(abbr).getFirst());
-                frontAllAwardInfoNow.setRestNum(ConfigUtil.awardLuckyList.get(abbr).getSecond().getFirst());
-                list.add(frontAllAwardInfoNow);
-            }
-
-            request.setAttribute("awardList", list);
+            request.setAttribute("awardList", ConfigUtil.returnDrawList());
             request.getRequestDispatcher("drawing.jsp").forward(request, response);
         } else if (page.equals("1")) {
             request.getRequestDispatcher("addaward.jsp").forward(request, response);

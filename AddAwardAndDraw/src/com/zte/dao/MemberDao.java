@@ -59,9 +59,9 @@ public class MemberDao {
                     flag = resultSet.getString("flagOfAward");
                 }
 
-                if ((null == flag) && (null != name) && (null != number)) {
+                if ((null == flag) && (null != name) && (null != number) && (!ConfigUtil.luckyMember.contains(idTmp))) {
                     memberName = name + number;
-                    ConfigUtil.luckyMember.add(id);
+                    ConfigUtil.luckyMember.add(idTmp);
                     break;
                 } else {
                     do {

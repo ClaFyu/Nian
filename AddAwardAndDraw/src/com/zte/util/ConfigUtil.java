@@ -5,6 +5,7 @@ import com.zte.dao.DepartmentDao;
 import com.zte.dao.MemberDao;
 import com.zte.model.Award;
 import com.zte.model.Department;
+import com.zte.model.FrontAllAwardInfoNow;
 import com.zte.util.common.Triplet;
 import com.zte.util.common.Tuple;
 
@@ -142,6 +143,21 @@ public class ConfigUtil {
                 }
             }
         }
+    }
+
+    public static List<FrontAllAwardInfoNow> returnDrawList() {
+        List<FrontAllAwardInfoNow> list = new ArrayList<>();
+
+        for (String abbr: ConfigUtil.awardLuckyList.keySet()) {
+            FrontAllAwardInfoNow frontAllAwardInfoNow = new FrontAllAwardInfoNow();
+
+            frontAllAwardInfoNow.setAbbr(abbr);
+            frontAllAwardInfoNow.setName(ConfigUtil.awardLuckyList.get(abbr).getFirst());
+            frontAllAwardInfoNow.setRestNum(ConfigUtil.awardLuckyList.get(abbr).getSecond().getFirst());
+            list.add(frontAllAwardInfoNow);
+        }
+
+        return list;
     }
 
     public static void resetAllList() {

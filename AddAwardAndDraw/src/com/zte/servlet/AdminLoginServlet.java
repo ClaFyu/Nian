@@ -33,18 +33,8 @@ public class AdminLoginServlet extends HttpServlet {
 
         if (result) {
             JOptionPane.showMessageDialog(null, "登录成功");
-            List<FrontAllAwardInfoNow> list = new ArrayList<>();
 
-            for (String abbr: ConfigUtil.awardLuckyList.keySet()) {
-                FrontAllAwardInfoNow frontAllAwardInfoNow = new FrontAllAwardInfoNow();
-
-                frontAllAwardInfoNow.setAbbr(abbr);
-                frontAllAwardInfoNow.setName(ConfigUtil.awardLuckyList.get(abbr).getFirst());
-                frontAllAwardInfoNow.setRestNum(ConfigUtil.awardLuckyList.get(abbr).getSecond().getFirst());
-                list.add(frontAllAwardInfoNow);
-            }
-
-            request.setAttribute("awardList", list);
+            request.setAttribute("awardList", ConfigUtil.returnDrawList());
             request.getRequestDispatcher("drawing.jsp").forward(request, response);
 //            request.getRequestDispatcher("drawing.jsp").forward(request, response);
         } else {

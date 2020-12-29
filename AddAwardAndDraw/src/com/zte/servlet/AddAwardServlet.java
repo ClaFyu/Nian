@@ -78,7 +78,7 @@ public class AddAwardServlet extends HttpServlet  {
         String[] leaderInfo = null;
         String leaderName = "";
         String leaderJobNumber = "";
-        if (null != leader) {
+        if (!"".equals(leader)) {
             leaderInfo = ConfigUtil.splitNameAndNumber(leader);
             leaderName = leaderInfo[0];
             leaderJobNumber = leaderInfo[1];
@@ -123,18 +123,8 @@ public class AddAwardServlet extends HttpServlet  {
 
         if (result1 && result2) {
             JOptionPane.showMessageDialog(null, "添加成功");
-            List<FrontAllAwardInfoNow> list1 = new ArrayList<>();
 
-            for (String abbr1: ConfigUtil.awardLuckyList.keySet()) {
-                FrontAllAwardInfoNow frontAllAwardInfoNow = new FrontAllAwardInfoNow();
-
-                frontAllAwardInfoNow.setAbbr(abbr1);
-                frontAllAwardInfoNow.setName(ConfigUtil.awardLuckyList.get(abbr1).getFirst());
-                frontAllAwardInfoNow.setRestNum(ConfigUtil.awardLuckyList.get(abbr1).getSecond().getFirst());
-                list1.add(frontAllAwardInfoNow);
-            }
-
-            request.setAttribute("awardList", list1);
+            request.setAttribute("awardList", ConfigUtil.returnDrawList());
             request.getRequestDispatcher("drawing.jsp").forward(request, response);
         } else {
             JOptionPane.showMessageDialog(null, "添加失败");

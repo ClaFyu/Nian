@@ -21,10 +21,10 @@ public class AwardDao {
         Connection connection = DBUtil.getConnection();
         Statement statement = null;
 
-        if (award.getLeader().equals("")) {
-            sql = String.format("insert into Award(abbr, name, moneyperperson, totalnumberofmember, restNum, " +
-                            "restNumFor01, restNumFor02) " +
-                            "values('%s', '%s', %s, %s, %s, %s, %s);",
+        if ("".equals(award.getLeader())) {
+            sql = String.format("insert into Award(abbr, name, leader, leaderjobnumber, moneyperperson, " +
+                            "totalnumberofmember, restNum, restNumFor01, restNumFor02) " +
+                            "values('%s', '%s', null, null, %s, %s, %s, %s, %s);",
                     award.getAbbr(), award.getName(), award.getMoneyPerPerson(), award.getTotalNumberOfMember(),
                     award.getRestNum(), award.getRestNumFor01(), award.getRestNumFor02());
         } else {

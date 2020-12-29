@@ -35,6 +35,7 @@ public class DrawTest {
                 System.out.println(tuple.getFirst() + "\t" + tuple.getSecond());
             }
             System.out.println("\n");
+            System.out.println(ConfigUtil.luckyMember.size());
         }
     }
 }
